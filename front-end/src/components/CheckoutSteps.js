@@ -36,10 +36,10 @@ const ChekoutSteps = ({ step1, step2, step3, step4 }) => {
 			<Nav.Item>
 				{step4 ? (
 					<LinkContainer to="/placeorder">
-						<Nav.Link>Sign In</Nav.Link>
+						<Nav.Link>Order</Nav.Link>
 					</LinkContainer>
 				) : (
-					<Nav.Link disabled>Sign In </Nav.Link>
+					<Nav.Link disabled>Order </Nav.Link>
 				)}
 			</Nav.Item>
 		</Nav>
