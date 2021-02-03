@@ -19,9 +19,12 @@ const OrderScreen = ({ match }) => {
 		order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0));
 	}
 
-	useEffect(() => {
-		dispatch(getOrderDetails(orderId));
-	}, []);
+	useEffect(
+		() => {
+			dispatch(getOrderDetails(orderId));
+		},
+		[ orderId, dispatch ]
+	);
 
 	return loading ? (
 		<Loader />
