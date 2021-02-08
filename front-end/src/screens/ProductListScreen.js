@@ -4,7 +4,9 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts, deleteProduct } from '../actions/productActions';
+import { listProducts, deleteProduct, createProduct } from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+
 const ProductListScreen = ({ history, match }) => {
 	const dispatch = useDispatch();
 
@@ -14,42 +16,60 @@ const ProductListScreen = ({ history, match }) => {
 	const productDelete = useSelector((state) => state.productDelete);
 	const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete;
 
+	const productCreate = useSelector((state) => state.productCreate);
+	const {
+		loading: loadingCreate,
+		error: errorCreate,
+		success: successCreate,
+		product: createdProduct
+	} = productCreate;
+
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
 
 	useEffect(
 		() => {
-			if (userInfo && userInfo.isAdmin) {
-				dispatch(listProducts());
-			} else {
+			dispatch({ type: PRODUCT_CREATE_RESET });
+
+			if (!userInfo.isAdmin) {
 				history.push('/login');
 			}
+
+			if (successCreate) {
+				history.push(`/admin/product/${createdProduct._id}/edit`);
+			} else {
+				dispatch(listProducts());
+			}
 		},
-		[ dispatch, history, userInfo, successDelete ]
+		[ dispatch, history, userInfo, successDelete, successCreate, createdProduct ]
 	);
+
 	const deleteHandler = (id) => {
-		if (window.confirm("êtes-vous Sûr de vouloir supprimer l'utilisateur ?")) {
+		if (window.confirm('Are you sure')) {
 			dispatch(deleteProduct(id));
 		}
 	};
+
 	const createProductHandler = () => {
-		console.log('produc');
+		dispatch(createProduct());
 	};
+
 	return (
 		<div>
-			<Row className="aligns-items-center">
+			<Row className="align-items-center">
 				<Col>
-					<h1>Produits</h1>
+					<h1>Products</h1>
 				</Col>
-
 				<Col className="text-right">
 					<Button className="my-3" onClick={createProductHandler}>
-						<i className="fas fa-plus" />creer un Produit
+						<i className="fas fa-plus" /> Create Product
 					</Button>
 				</Col>
 			</Row>
 			{loadingDelete && <Loader />}
 			{errorDelete && <Message variant="danger">{errorDelete}</Message>}
+			{loadingCreate && <Loader />}
+			{errorCreate && <Message variant="danger">{errorCreate}</Message>}
 			{loading ? (
 				<Loader />
 			) : error ? (
@@ -61,8 +81,8 @@ const ProductListScreen = ({ history, match }) => {
 							<th>ID</th>
 							<th>NAME</th>
 							<th>PRICE</th>
-							<th>CATEGORIES</th>
-							<th>Brand</th>
+							<th>CATEGORY</th>
+							<th>BRAND</th>
 							<th />
 						</tr>
 					</thead>
@@ -81,11 +101,11 @@ const ProductListScreen = ({ history, match }) => {
 										</Button>
 									</LinkContainer>
 									<Button
-										className="btn-sm"
 										variant="danger"
+										className="btn-sm"
 										onClick={() => deleteHandler(product._id)}
 									>
-										<i className="fa fa-trash" />
+										<i className="fas fa-trash" />
 									</Button>
 								</td>
 							</tr>
@@ -96,4 +116,5 @@ const ProductListScreen = ({ history, match }) => {
 		</div>
 	);
 };
+
 export default ProductListScreen;
