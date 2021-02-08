@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { listProductDetails } from '../actions/productActions';
+import { listProductDetails, updateProduct } from '../actions/productActions';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 const ProductEditScreen = ({ match, history }) => {
 	const productId = match.params.id;
@@ -23,26 +24,45 @@ const ProductEditScreen = ({ match, history }) => {
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
 
+	const productUpdate = useSelector((state) => state.productUpdate);
+	const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
+
 	useEffect(
 		() => {
-			if (!product.name || product._id !== productId) {
-				dispatch(listProductDetails(productId));
+			if (successUpdate) {
+				dispatch({ type: PRODUCT_UPDATE_RESET });
+				history.push('/admin/productlist');
 			} else {
-				setName(product.name);
-				setPrice(product.email);
-				setImage(product.image);
-				setBrand(product.brand);
-				setCategory(product.category);
-				setCountInStock(product.countInStock);
-				setDescription(product.description);
+				if (!product.name || product._id !== productId) {
+					dispatch(listProductDetails(productId));
+				} else {
+					setName(product.name);
+					setPrice(product.email);
+					setImage(product.image);
+					setBrand(product.brand);
+					setCategory(product.category);
+					setCountInStock(product.countInStock);
+					setDescription(product.description);
+				}
 			}
 		},
-		[ dispatch, history, productId, product ]
+		[ dispatch, history, productId, product, successUpdate ]
 	);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		// update product
+		dispatch(
+			updateProduct({
+				_id: productId,
+				name,
+				price,
+				image,
+				brand,
+				category,
+				countInStock,
+				description
+			})
+		);
 	};
 
 	return (
@@ -52,7 +72,8 @@ const ProductEditScreen = ({ match, history }) => {
 			</Link>
 			<FormContainer>
 				<h1>Edit product</h1>
-
+				{loadingUpdate && <Loader />}
+				{errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 				{loading ? (
 					<Loader />
 				) : error ? (
@@ -89,7 +110,7 @@ const ProductEditScreen = ({ match, history }) => {
 							/>
 						</Form.Group>
 
-						<Form.Group controlId="Brand">
+						<Form.Group controlId="brand">
 							<Form.Label>Brand </Form.Label>
 							<Form.Control
 								type="text"
@@ -99,7 +120,7 @@ const ProductEditScreen = ({ match, history }) => {
 							/>
 						</Form.Group>
 
-						<Form.Group controlId="CountInStock">
+						<Form.Group controlId="countInStock">
 							<Form.Label>CountInStock </Form.Label>
 							<Form.Control
 								type="number"
@@ -109,7 +130,7 @@ const ProductEditScreen = ({ match, history }) => {
 							/>
 						</Form.Group>
 
-						<Form.Group controlId="Category">
+						<Form.Group controlId="category">
 							<Form.Label>Category </Form.Label>
 							<Form.Control
 								type="text"
@@ -119,7 +140,7 @@ const ProductEditScreen = ({ match, history }) => {
 							/>
 						</Form.Group>
 
-						<Form.Group controlId="Description">
+						<Form.Group controlId="description">
 							<Form.Label>Description </Form.Label>
 							<Form.Control
 								type="text"
