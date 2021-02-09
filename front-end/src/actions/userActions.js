@@ -59,6 +59,7 @@ export const logout = () => async (dispatch) => {
 		type: USER_LOGOUT
 	});
 	dispatch({ type: USER_DETAILS_RESET });
+
 	dispatch({ type: ORDER_LIST_MY_RESET });
 	dispatch({ type: USER_LIST_RESET });
 };
