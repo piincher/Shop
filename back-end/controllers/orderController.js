@@ -43,7 +43,7 @@ const getOrderByid = asyncHandler(async (req, res) => {
 });
 
 // @desc    update order to paid
-// @route   Get  /api/orders/:id/pay
+// @route   put  /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
 	const order = await Order.findById(req.params.id);
@@ -57,6 +57,24 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 			update_time: req.body.update_time,
 			email_address: req.body.payer.email_address
 		};
+
+		const updateOrder = await order.save();
+		res.json(updateOrder);
+	} else {
+		res.status(404);
+		throw new Error('order not found ');
+	}
+});
+
+// @desc    update order to deliver
+// @route   put  /api/orders/:id/deliver
+// @access  Private/Admin
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+	const order = await Order.findById(req.params.id);
+
+	if (order) {
+		order.isDelivered = true;
+		order.deliveredAt = Date.now();
 
 		const updateOrder = await order.save();
 		res.json(updateOrder);
@@ -83,7 +101,7 @@ const getOrders = asyncHandler(async (req, res) => {
 
 	res.json(orders);
 });
-export { addOrderItems, getOrderByid, updateOrderToPaid, getMyOrders, getOrders };
+export { addOrderItems, getOrderByid, updateOrderToPaid, getMyOrders, getOrders, updateOrderToDelivered };
 
 //sb-dklvw4990878@personal.example.com
 //XkB8wqw^
