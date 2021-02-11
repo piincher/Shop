@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Meta from '../components/Meta';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -52,7 +53,7 @@ const ProductScreen = ({ history, match }) => {
 	return (
 		<div>
 			<Link to="/" className="btn btn-info my-3">
-				Go Back
+				Retour
 			</Link>
 			{loading ? (
 				<Loader />
@@ -60,6 +61,7 @@ const ProductScreen = ({ history, match }) => {
 				<Message variant="danger">{error}</Message>
 			) : (
 				<div>
+					<Meta title={product.name} />
 					<Row>
 						<Col md={6}>
 							<Image src={product.image} alt={product.name} fluid />
@@ -73,8 +75,8 @@ const ProductScreen = ({ history, match }) => {
 								<ListGroup.Item>
 									<Rating value={product.rating} text={`${product.numReviews} review`} />
 								</ListGroup.Item>
-								<ListGroup.Item>price: ${product.price}</ListGroup.Item>
-								<ListGroup.Item>description: ${product.description}</ListGroup.Item>
+								<ListGroup.Item>Prix: {product.price} FCFA</ListGroup.Item>
+								<ListGroup.Item>description: {product.description}</ListGroup.Item>
 							</ListGroup>
 						</Col>
 						<Col md={3}>
@@ -82,24 +84,24 @@ const ProductScreen = ({ history, match }) => {
 								<ListGroup variant="flush">
 									<ListGroup.Item>
 										<Row>
-											<Col>Price:</Col>
+											<Col>Prix:</Col>
 											<Col>
-												<strong>${product.price}</strong>
+												<strong>{product.price} FCFA</strong>
 											</Col>
 										</Row>
 									</ListGroup.Item>
 
 									<ListGroup.Item>
 										<Row>
-											<Col>Status</Col>
-											<Col>{product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}</Col>
+											<Col>Statut</Col>
+											<Col>{product.countInStock > 0 ? 'En Stock' : 'En Rupture de stock'}</Col>
 										</Row>
 									</ListGroup.Item>
 
 									{product.countInStock > 0 && (
 										<ListGroup.Item>
 											<Row>
-												<Col>Qty</Col>
+												<Col>Qte</Col>
 												<Col>
 													<Form.Control
 														as="select"
@@ -123,7 +125,7 @@ const ProductScreen = ({ history, match }) => {
 											type="button"
 											disabled={product.countInStock === 0}
 										>
-											Add To Cart
+											Ajouter au panier
 										</Button>
 									</ListGroup.Item>
 								</ListGroup>
@@ -133,7 +135,7 @@ const ProductScreen = ({ history, match }) => {
 
 					<Row>
 						<Col md={6}>
-							<h2>Reviews</h2>
+							<h2>Commentaire</h2>
 							{product.reviews.length === 0 && <Message>pas de revue</Message>}
 							<ListGroup variant="flush">
 								{product.reviews.map((review) => (
@@ -182,10 +184,10 @@ const ProductScreen = ({ history, match }) => {
 										</Form>
 									) : (
 										<Message>
-											Pour laisser un Commentaire connectez-vous et Passé A la Caisse pour Payer
-											,Si Vous Avez déjà paye Attendez la reception du Colis Pour laisser un
+											Pour laisser un Commentaire connectez-vous et Passez à la Caisse pour Payer
+											,Si Vous avez déjà payé Attendez la reception du Colis Pour laisser un
 											Commentaire <br />
-											Nb: L'administrateur Doit Marquer Comme Delivré (Coté Administration) pour
+											Nb: L'administrateur Doit Marquer Comme Delivrer (Coté Administration) pour
 											Vous permettre de laisser un Commentaire
 										</Message>
 									)}

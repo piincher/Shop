@@ -22,50 +22,50 @@ const ShippingScreen = ({ history }) => {
 	return (
 		<FormContainer>
 			<CheckoutSteps step1 step2 />
-			<h2>shipping</h2>
+			<h2>Addresse de livraison</h2>
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="adress">
-					<Form.Label>Adress</Form.Label>
+					<Form.Label>Adresse</Form.Label>
 					<Form.Control
 						type="text"
-						placeholder="enter adress"
+						placeholder="entre votre adresse"
 						required
 						value={address}
 						onChange={(e) => setAdress(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="city">
-					<Form.Label>City</Form.Label>
+					<Form.Label>Ville</Form.Label>
 					<Form.Control
 						type="text"
-						placeHolder="enter City"
+						placeHolder="Votre Ville"
 						required
 						value={city}
 						onChange={(e) => setCity(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="postalCode">
-					<Form.Label>PostalCode</Form.Label>
+					<Form.Label>Code Postal</Form.Label>
 					<Form.Control
 						type="text"
-						placeHolder="enter postalCode"
+						placeHolder="entre votre Code Postal"
 						required
 						value={postalCode}
 						onChange={(e) => setPostalCode(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="country">
-					<Form.Label>Country</Form.Label>
+					<Form.Label>Pays</Form.Label>
 					<Form.Control
 						type="text"
-						placeHolder="enter country"
+						placeHolder="pays"
 						required
 						value={country}
 						onChange={(e) => setCountry(e.target.value)}
 					/>
 				</Form.Group>
 				<Button type="submit" variant="primary">
-					Next
+					Suivant
 				</Button>
 			</Form>
 		</FormContainer>

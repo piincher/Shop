@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Route} from 'react-router-dom'
+import { Route } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import SearchBox from './SearchBox';
@@ -24,7 +24,7 @@ const Header = () => {
 					</LinkContainer>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
-						<Route render={({ history }) => <SearchBox history={history} />}/>
+						<Route render={({ history }) => <SearchBox history={history} />} />
 						<Nav className="ml-auto">
 							<LinkContainer to="/cart">
 								<Nav.Link>
@@ -34,14 +34,14 @@ const Header = () => {
 							{userInfo ? (
 								<NavDropdown title={userInfo.name} id="username">
 									<LinkContainer to="/profile">
-										<NavDropdown.Item>Profile</NavDropdown.Item>
+										<NavDropdown.Item>Profil</NavDropdown.Item>
 									</LinkContainer>
-									<NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+									<NavDropdown.Item onClick={logoutHandler}>se déconnecter</NavDropdown.Item>
 								</NavDropdown>
 							) : (
 								<LinkContainer to="/login">
 									<Nav.Link>
-										<i className="fas fa-user" /> Sign In
+										<i className="fas fa-user" /> Se Connecter
 									</Nav.Link>
 								</LinkContainer>
 							)}
@@ -49,13 +49,13 @@ const Header = () => {
 							userInfo.isAdmin && (
 								<NavDropdown title="Admin" id="username">
 									<LinkContainer to="/admin/userlist">
-										<NavDropdown.Item>Users</NavDropdown.Item>
+										<NavDropdown.Item>Utilisateurs</NavDropdown.Item>
 									</LinkContainer>
 									<LinkContainer to="/admin/productlist">
-										<NavDropdown.Item>product</NavDropdown.Item>
+										<NavDropdown.Item>produits</NavDropdown.Item>
 									</LinkContainer>
 									<LinkContainer to="/admin/orderlist">
-										<NavDropdown.Item>orders</NavDropdown.Item>
+										<NavDropdown.Item>Commande</NavDropdown.Item>
 									</LinkContainer>
 								</NavDropdown>
 							)}

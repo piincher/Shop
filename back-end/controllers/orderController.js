@@ -9,7 +9,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
 	if (orderItems && orderItems.length === 0) {
 		res.status(400);
-		throw new Error('no order Items ');
+		throw new Error('pas de commande ');
 		return;
 	} else {
 		const order = new Order({
@@ -62,7 +62,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 		res.json(updateOrder);
 	} else {
 		res.status(404);
-		throw new Error('order not found ');
+		throw new Error("La commande n'a pas été trouver ");
 	}
 });
 
@@ -80,7 +80,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
 		res.json(updateOrder);
 	} else {
 		res.status(404);
-		throw new Error('order not found ');
+		throw new Error("La commande n'a pas été trouver");
 	}
 });
 

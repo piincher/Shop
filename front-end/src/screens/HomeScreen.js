@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Meta from '../components/Meta';
 import Product from '../components/Product';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -27,8 +29,15 @@ const HomeScreen = ({ match }) => {
 
 	return (
 		<div>
-			{!keyword && <ProductCarousel />}
-			<h1>Latest Products</h1>
+			<Meta title="MYMASHOP | Boutique Officiel" />
+			{!keyword ? (
+				<ProductCarousel />
+			) : (
+				<Link to="/" className="btn btn-light">
+					Retour
+				</Link>
+			)}
+			<h1>Derniers Produits</h1>
 			{loading ? (
 				<Loader />
 			) : error ? (
