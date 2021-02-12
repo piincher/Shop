@@ -5,7 +5,7 @@
 		"node": "14.x"
 	},
 	"description": "plate-forme e-commerce avec mern stack",
-	"main": "server.js",
+	"main": "index.js",
 	"type": "module",
 	"scripts": {
 		"start": "node back-end/server",
@@ -14,7 +14,7 @@
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node back-end/seeder",
 		"data:destroy": "node back-end/seeder -d",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front-end && npm run build --prefix front-end"
+		"heroku-postbuild": "cd front-end && npm install && npm run build"
 	},
 	"repository": {
 		"type": "git",
