@@ -34,7 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 	if (userExists) {
 		res.status(400);
-		throw new Error('user already exists ');
+		throw new Error('Cet utilisateur existe déjà');
 	}
 
 	const user = await User.create({
@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		});
 	} else {
 		res.status(400);
-		throw new Error('Invalid user data');
+		throw new Error('Donnée Invalide');
 	}
 });
 // @desc    Get user profile
@@ -71,7 +71,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 		});
 	} else {
 		res.status(404);
-		throw new Error('User not found');
+		throw new Error("cet utilisateur n'existe pas");
 	}
 });
 
@@ -97,7 +97,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 		});
 	} else {
 		res.status(404);
-		throw new Error('User not found');
+		throw new Error("cet utilisateur n'existe pas");
 	}
 });
 
@@ -119,7 +119,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 		res.json({ message: 'utilisateur supprimé' });
 	} else {
 		res.status(404);
-		throw new Error('not found ');
+		throw new Error('Pas trouver');
 	}
 });
 
@@ -132,7 +132,7 @@ const getUserById = asyncHandler(async (req, res) => {
 		res.json(user);
 	} else {
 		res.send(404);
-		throw new Error('user not found');
+		throw new Error("cet utilisateur n'existe pas");
 	}
 });
 
@@ -155,7 +155,7 @@ const updateUser = asyncHandler(async (req, res) => {
 		});
 	} else {
 		res.status(404);
-		throw new Error('User not found');
+		throw new Error("L'Utilisateur n'a pas été trouver");
 	}
 });
 export { authUser, registerUser, getUserProfile, updateUserProfile, getUsers, deleteUser, getUserById, updateUser };

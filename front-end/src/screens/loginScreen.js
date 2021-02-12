@@ -35,31 +35,31 @@ const LoginScreen = ({ location, history }) => {
 			{loading && <Loader />}
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="email">
-					<Form.Label>Email Address</Form.Label>
+					<Form.Label> Addresse Email</Form.Label>
 					<Form.Control
 						type="email"
-						placeHolder="enter email"
+						placeHolder="entre email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="password">
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Mot de passe</Form.Label>
 					<Form.Control
 						type="password"
-						placeHolder="enter password"
+						placeHolder="entre Mot de passe"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</Form.Group>
 				<Button type="submit" variant="primary">
-					Sign in
+					se connecter
 				</Button>
 			</Form>
 			<Row className="py-3">
 				<Col>
-					New Customer ?
-					<Link to={redirect ? `/register?redirect=${redirect}` : '/redirect'}> Register </Link>
+					Nouveau Client ?
+					<Link to={redirect ? `/register?redirect=${redirect}` : '/redirect'}> S'inscrire </Link>
 				</Col>
 			</Row>
 		</FormContainer>

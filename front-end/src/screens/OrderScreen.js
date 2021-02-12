@@ -84,47 +84,47 @@ const OrderScreen = ({ match, history }) => {
 		<Message variant="danger">{error}</Message>
 	) : (
 		<div>
-			<h1>Order {order._id}</h1>
+			<h1>Commande {order._id}</h1>
 			<Row>
 				<Col md={8}>
 					<ListGroup variant="flush">
 						<ListGroup.Item>
-							<h2>Shipping</h2>
+							<h2>Livraison</h2>
 							<p>
-								<strong>Name: </strong> {order.user.name}
+								<strong>Nom: </strong> {order.user.name}
 							</p>
 							<p>
 								<strong>Email: </strong> <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
 							</p>
 							<p>
-								<strong>Address:</strong>
+								<strong>Addresse:</strong>
 								{order.shippingAddress.address}, {order.shippingAddress.city}{' '}
 								{order.shippingAddress.postalCode}, {order.shippingAddress.country}
 							</p>
 							{order.isDelivered ? (
-								<Message variant="success">Delivered on {order.deliveredAt}</Message>
+								<Message variant="success">Deliveré le {order.deliveredAt}</Message>
 							) : (
-								<Message variant="danger">Not Delivered</Message>
+								<Message variant="danger">Pas Delivré</Message>
 							)}
 						</ListGroup.Item>
 
 						<ListGroup.Item>
-							<h2>Payment Method</h2>
+							<h2>Mode de Paiement</h2>
 							<p>
-								<strong>Method: </strong>
+								<strong>Mode: </strong>
 								{order.paymentMethod}
 							</p>
 							{order.isPaid ? (
-								<Message variant="success">Paid on {order.paidAt}</Message>
+								<Message variant="success">payé le {order.paidAt}</Message>
 							) : (
-								<Message variant="danger">Not Paid</Message>
+								<Message variant="danger">pas encore payé</Message>
 							)}
 						</ListGroup.Item>
 
 						<ListGroup.Item>
-							<h2>Order Items</h2>
+							<h2>Articles commandés</h2>
 							{order.orderItems.length === 0 ? (
-								<Message>Order is empty</Message>
+								<Message>Pas de Commande</Message>
 							) : (
 								<ListGroup variant="flush">
 									{order.orderItems.map((item, index) => (
@@ -137,7 +137,7 @@ const OrderScreen = ({ match, history }) => {
 													<Link to={`/product/${item.product}`}>{item.name}</Link>
 												</Col>
 												<Col md={4}>
-													{item.qty} x ${item.price} = ${item.qty * item.price}
+													{item.qty} x {item.price} FCFA= {item.qty * item.price}FCFA
 												</Col>
 											</Row>
 										</ListGroup.Item>
@@ -151,30 +151,30 @@ const OrderScreen = ({ match, history }) => {
 					<Card>
 						<ListGroup variant="flush">
 							<ListGroup.Item>
-								<h2>Order Summary</h2>
+								<h2>Recapitualtif de la Commande</h2>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Items</Col>
-									<Col>${order.itemsPrice}</Col>
+									<Col>Articles</Col>
+									<Col>{order.itemsPrice} FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Shipping</Col>
-									<Col>${order.shippingPrice}</Col>
+									<Col>frais de Livraison</Col>
+									<Col>{order.shippingPrice}FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Tax</Col>
-									<Col>${order.taxPrice}</Col>
+									<Col>Taxe</Col>
+									<Col>{order.taxPrice}FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
 									<Col>Total</Col>
-									<Col>${order.totalPrice}</Col>
+									<Col>{order.totalPrice}FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							{!order.isPaid && (
@@ -194,7 +194,7 @@ const OrderScreen = ({ match, history }) => {
 							!order.isDelivered && (
 								<ListGroup.Item>
 									<Button type="button" className="btn btn-block" onClick={deliverHandler}>
-										Mark As Delivered
+										Marque comme livrer
 									</Button>
 								</ListGroup.Item>
 							)}

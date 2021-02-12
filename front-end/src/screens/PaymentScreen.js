@@ -23,15 +23,16 @@ const PaymentScreen = ({ history }) => {
 	return (
 		<FormContainer>
 			<CheckoutSteps step1 step2 step3 />
-			<h2>payment Method</h2>
+
+			<h2>Mode de paiement</h2>
 			<Form onSubmit={submitHandler}>
 				<Form.Group>
-					<Form.Label as="legend"> Select Method </Form.Label>
+					<Form.Label as="legend"> Selectionner la méthode </Form.Label>
 
 					<Col>
 						<Form.Check
 							type="radio"
-							label="Paypal Or Credit Card"
+							label="Paypal ou carte de crédit"
 							id="Paypal"
 							name="paymentMethod"
 							value="Paypal"
@@ -49,7 +50,7 @@ const PaymentScreen = ({ history }) => {
 					</Col>
 				</Form.Group>
 				<Button type="submit" variant="primary">
-					Next
+					Suivant
 				</Button>
 			</Form>
 		</FormContainer>

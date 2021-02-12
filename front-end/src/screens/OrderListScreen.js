@@ -27,7 +27,7 @@ const OrderListScreen = ({ history }) => {
 
 	return (
 		<div>
-			<h1>Orders</h1>
+			<h1>COMMANDES</h1>
 			{loading ? (
 				<Loader />
 			) : error ? (
@@ -37,11 +37,11 @@ const OrderListScreen = ({ history }) => {
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>USERS</th>
+							<th>UTILISATEUR</th>
 							<th>DATE</th>
 							<th>TOTAL</th>
-							<th>PAID</th>
-							<th>DELIVERED</th>
+							<th>PAYÉ</th>
+							<th>DELIVRÉ</th>
 
 							<th />
 						</tr>
@@ -52,7 +52,7 @@ const OrderListScreen = ({ history }) => {
 								<td>{order._id}</td>
 								<td>{order.user && order.user.name}</td>
 								<td>{order.createdAt.substring(0, 10)}</td>
-								<td>{order.totalPrice}</td>
+								<td>{order.totalPrice} FCFA</td>
 
 								<td>
 									{order.isPaid ? (

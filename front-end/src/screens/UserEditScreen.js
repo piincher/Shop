@@ -49,10 +49,10 @@ const UserEditScreen = ({ match, history }) => {
 	return (
 		<div>
 			<Link to="/admin/userlist" className="btn btn-light my-3">
-				Go Back
+				Retour
 			</Link>
 			<FormContainer>
-				<h1>Edit User</h1>
+				<h1>Modifier l'utilisateur</h1>
 				{loadingUpdate && <Loader />}
 				{errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
 				{loading ? (
@@ -65,17 +65,17 @@ const UserEditScreen = ({ match, history }) => {
 							<Form.Label>Name</Form.Label>
 							<Form.Control
 								type="name"
-								placeholder="Enter name"
+								placeholder="Entrer le nom"
 								value={name}
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</Form.Group>
 
 						<Form.Group controlId="email">
-							<Form.Label>Email Address</Form.Label>
+							<Form.Label> Addresse Email</Form.Label>
 							<Form.Control
 								type="email"
-								placeholder="Enter email"
+								placeholder="Entre l'email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
@@ -84,14 +84,14 @@ const UserEditScreen = ({ match, history }) => {
 						<Form.Group controlId="isadmin">
 							<Form.Check
 								type="checkbox"
-								label="Is Admin"
+								label="Admin"
 								checked={isAdmin}
 								onChange={(e) => setIsAdmin(e.target.checked)}
 							/>
 						</Form.Group>
 
 						<Button type="submit" variant="primary">
-							Update
+							Mettre à jour
 						</Button>
 					</Form>
 				)}

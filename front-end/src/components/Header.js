@@ -17,7 +17,7 @@ const Header = () => {
 
 	return (
 		<header>
-			<Navbar bg="danger" variant="dark" expand="lg" collapseOnSelect>
+			<Navbar bg="light" variant="dark" expand="lg" collapseOnSelect>
 				<Container>
 					<LinkContainer to="/">
 						<Navbar.Brand>MYEMPIREBYMYMA</Navbar.Brand>
@@ -28,7 +28,7 @@ const Header = () => {
 						<Nav className="ml-auto">
 							<LinkContainer to="/cart">
 								<Nav.Link>
-									<i className="fas fa-shopping-cart" /> Cart
+									<i className="fas fa-shopping-cart" /> Panier
 								</Nav.Link>
 							</LinkContainer>
 							{userInfo ? (
@@ -55,7 +55,7 @@ const Header = () => {
 										<NavDropdown.Item>produits</NavDropdown.Item>
 									</LinkContainer>
 									<LinkContainer to="/admin/orderlist">
-										<NavDropdown.Item>Commande</NavDropdown.Item>
+										<NavDropdown.Item>Commandes</NavDropdown.Item>
 									</LinkContainer>
 								</NavDropdown>
 							)}

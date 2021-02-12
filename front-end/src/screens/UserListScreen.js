@@ -28,13 +28,13 @@ const UserListScreen = ({ history }) => {
 		[ dispatch, history, successDelete, userInfo ]
 	);
 	const deleteHandler = (id) => {
-		if (window.confirm("êtes-vous Sûr de vouloir supprimer l'utilisateur ?")) {
+		if (window.confirm("êtes-vous Sûr de vouloir supprimer l'utilisateur ? ")) {
 			dispatch(deleteUser(id));
 		}
 	};
 	return (
 		<div>
-			<h1>Users</h1>
+			<h1>Utilisateurs</h1>
 			{loading ? (
 				<Loader />
 			) : error ? (
@@ -44,7 +44,7 @@ const UserListScreen = ({ history }) => {
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>NAME</th>
+							<th>NOM</th>
 							<th>EMAIL</th>
 							<th>ADMIN</th>
 							<th />

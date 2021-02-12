@@ -16,11 +16,11 @@ const SearchBox = ({ history }) => {
 				type="text"
 				name="q"
 				onChange={(e) => setKeyword(e.target.value)}
-				placeholder="Recherche produit..."
+				placeholder="Rechercher produit..."
 				className="mr-sm-2 ml-sm-5"
 			/>
 			<Button type="submit" variant="outline-success" className="p-2">
-				Cherche
+				Chercher
 			</Button>
 		</Form>
 	);

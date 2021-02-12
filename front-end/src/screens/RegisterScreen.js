@@ -42,35 +42,35 @@ const RegisterScreen = ({ location, history }) => {
 			{loading && <Loader />}
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="name">
-					<Form.Label>Name</Form.Label>
+					<Form.Label>Nom</Form.Label>
 					<Form.Control
 						type="name"
-						placeHolder="enter name"
+						placeHolder="entre votre Nom"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="email">
-					<Form.Label>Email Address</Form.Label>
+					<Form.Label>Addresse Email</Form.Label>
 					<Form.Control
 						type="email"
-						placeHolder="enter email"
+						placeHolder="Addresse Email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 				</Form.Group>
 				<Form.Group controlId="password">
-					<Form.Label>Password</Form.Label>
+					<Form.Label>Mot de passe</Form.Label>
 					<Form.Control
 						type="password"
-						placeHolder="enter password"
+						placeHolder="Mot de passe"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 				</Form.Group>
 
 				<Form.Group controlId="ConfirmPassword">
-					<Form.Label>ConfirmPassword</Form.Label>
+					<Form.Label>Confirmer le Mot de passe</Form.Label>
 					<Form.Control
 						type="password"
 						placeHolder="Confirm Password"
@@ -84,7 +84,7 @@ const RegisterScreen = ({ location, history }) => {
 			</Form>
 			<Row className="py-3">
 				<Col>
-					AVEZ-vous déjà un Compte ?
+					Avez-Vous déjà un Compte ?
 					<Link to={redirect ? `/login?login=${redirect}` : '/login'}> Se connecter </Link>
 				</Col>
 			</Row>

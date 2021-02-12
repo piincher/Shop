@@ -53,24 +53,24 @@ const PlaceOrderScreen = ({ history }) => {
 				<Col md={8}>
 					<ListGroup variant="flush">
 						<ListGroup.Item>
-							<h2>Shipping</h2>
+							<h2>Addresse de Livraison</h2>
 							<p>
-								<strong>Address:</strong>
+								<strong>Addresse:</strong>
 								{shippingAddress.address}, {shippingAddress.city} {shippingAddress.postalCode},{' '}
 								{shippingAddress.country}
 							</p>
 						</ListGroup.Item>
 
 						<ListGroup.Item>
-							<h2>Payment Method</h2>
-							<strong>Method: </strong>
+							<h2>Mode de paiement</h2>
+							<strong>Mode: </strong>
 							{paymentMethod}
 						</ListGroup.Item>
 
 						<ListGroup.Item>
-							<h2>Order Items</h2>
+							<h2>Articles Commandés</h2>
 							{cartItems.length === 0 ? (
-								<Message>Your cart is empty</Message>
+								<Message>Votre Panier est vide</Message>
 							) : (
 								<ListGroup variant="flush">
 									{cartItems.map((item, index) => (
@@ -83,7 +83,7 @@ const PlaceOrderScreen = ({ history }) => {
 													<Link to={`/product/${item.product}`}>{item.name}</Link>
 												</Col>
 												<Col md={4}>
-													{item.qty} x ${item.price} = ${item.qty * item.price}
+													{item.qty} x {item.price} FCFA= {item.qty * item.price} FCFA
 												</Col>
 											</Row>
 										</ListGroup.Item>
@@ -97,30 +97,30 @@ const PlaceOrderScreen = ({ history }) => {
 					<Card>
 						<ListGroup variant="flush">
 							<ListGroup.Item>
-								<h2>Order Summary</h2>
+								<h2>Récaptulatif de la commande </h2>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Items</Col>
-									<Col>${itemsPrice}</Col>
+									<Col>Articles</Col>
+									<Col>{itemsPrice} FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Shipping</Col>
-									<Col>${shippingPrice}</Col>
+									<Col> frais livraison</Col>
+									<Col>{shippingPrice} FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
-									<Col>Tax</Col>
-									<Col>${taxPrice}</Col>
+									<Col>Taxe</Col>
+									<Col>{taxPrice} FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Row>
 									<Col>Total</Col>
-									<Col>${totalPrice}</Col>
+									<Col>{totalPrice} FCFA</Col>
 								</Row>
 							</ListGroup.Item>
 							<ListGroup.Item>{error && <Message variant="danger">{error}</Message>}</ListGroup.Item>
@@ -131,7 +131,7 @@ const PlaceOrderScreen = ({ history }) => {
 									disabled={cartItems === 0}
 									onClick={placeOrderHandler}
 								>
-									Place Order
+									Passer la commande
 								</Button>
 							</ListGroup.Item>
 						</ListGroup>

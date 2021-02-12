@@ -73,7 +73,7 @@ const ProductScreen = ({ history, match }) => {
 									<h2>{product.name}</h2>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<Rating value={product.rating} text={`${product.numReviews} review`} />
+									<Rating value={product.rating} text={`${product.numReviews} revues`} />
 								</ListGroup.Item>
 								<ListGroup.Item>Prix: {product.price} FCFA</ListGroup.Item>
 								<ListGroup.Item>description: {product.description}</ListGroup.Item>
@@ -153,13 +153,13 @@ const ProductScreen = ({ history, match }) => {
 									{userInfo && order && order.isPaid && order.isDeliver ? (
 										<Form onSubmit={submitHandler}>
 											<Form.Group controlId="rating">
-												<Form.Label>Rating</Form.Label>
+												<Form.Label>Notation</Form.Label>
 												<Form.Control
 													as="select"
 													value={rating}
 													onChange={(e) => setRating(e.target.value)}
 												>
-													<option value="">Select....</option>
+													<option value="">Choisir....</option>
 													<option value="1">1- Faible</option>
 													<option value="2">2- juste</option>
 													<option value="3">3- Bien</option>

@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 const ProfileScreen = ({ location, history }) => {
 	const [ name, setName ] = useState('');
@@ -33,7 +34,8 @@ const ProfileScreen = ({ location, history }) => {
 			if (!userInfo) {
 				history.push('/login');
 			} else {
-				if (!user.name) {
+				if (!user || !user.name || success) {
+					dispatch({ type: USER_UPDATE_PROFILE_RESET });
 					dispatch(getUserDetails('profile'));
 					dispatch(listMyOrders());
 				} else {
@@ -42,13 +44,13 @@ const ProfileScreen = ({ location, history }) => {
 				}
 			}
 		},
-		[ dispatch, history, userInfo, user ]
+		[ dispatch, history, userInfo, user, success ]
 	);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
-			setMessage('Passwords do not match');
+			setMessage('Le mot de passe ne correspond pas');
 		} else {
 			dispatch(updateUserProfile({ id: user._id, name, email, password }));
 		}
@@ -57,59 +59,59 @@ const ProfileScreen = ({ location, history }) => {
 	return (
 		<Row>
 			<Col md={3}>
-				<h2>User Profile</h2>
+				<h2>Profil D'utilisateur</h2>
 				{message && <Message variant="danger">{message}</Message>}
 				{error && <Message variant="danger">{error}</Message>}
 				{success && <Message variant="success">Profile Updated</Message>}
 				{loading && <Loader />}
 				<Form onSubmit={submitHandler}>
 					<Form.Group controlId="name">
-						<Form.Label>Name</Form.Label>
+						<Form.Label>Nom</Form.Label>
 						<Form.Control
 							type="name"
-							placeholder="Enter name"
+							placeholder="Entre Nom"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
 					</Form.Group>
 
 					<Form.Group controlId="email">
-						<Form.Label>Email Address</Form.Label>
+						<Form.Label>Addresse Email</Form.Label>
 						<Form.Control
 							type="email"
-							placeholder="Enter email"
+							placeholder="Entre l'email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</Form.Group>
 
 					<Form.Group controlId="password">
-						<Form.Label>Password Address</Form.Label>
+						<Form.Label>Mot de passe</Form.Label>
 						<Form.Control
 							type="password"
-							placeholder="Enter password"
+							placeholder="Entre le mot de passe"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</Form.Group>
 
 					<Form.Group controlId="confirmPassword">
-						<Form.Label>Confirm Password</Form.Label>
+						<Form.Label>Confirmer Le Mot de passe</Form.Label>
 						<Form.Control
 							type="password"
-							placeholder="Confirm password"
+							placeholder="Confirmer le mot de passe"
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 						/>
 					</Form.Group>
 
 					<Button type="submit" variant="primary">
-						Update
+						Mettre à jour
 					</Button>
 				</Form>
 			</Col>
 			<Col md={9}>
-				<h2>My Orders</h2>
+				<h2>Mes Commandes</h2>
 				{loadingOrders ? (
 					<Loader />
 				) : errorOrders ? (
@@ -121,8 +123,8 @@ const ProfileScreen = ({ location, history }) => {
 								<th>ID</th>
 								<th>DATE</th>
 								<th>TOTAL</th>
-								<th>PAID</th>
-								<th>DELIVERED</th>
+								<th>PAYÉ</th>
+								<th>DELIVRÉ</th>
 								<th />
 							</tr>
 						</thead>
@@ -131,7 +133,7 @@ const ProfileScreen = ({ location, history }) => {
 								<tr key={order._id}>
 									<td>{order._id}</td>
 									<td>{order.createdAt.substring(0, 10)}</td>
-									<td>{order.totalPrice}</td>
+									<td>{order.totalPrice} FCFA</td>
 									<td>
 										{order.isPaid ? (
 											order.paidAt.substring(0, 10)
