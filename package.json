@@ -1,8 +1,11 @@
 {
 	"name": "proshop",
 	"version": "1.0.0",
+	"engines": {
+		"node": "14.x"
+	},
 	"description": "plate-forme e-commerce avec mern stack",
-	"main": "index.js",
+	"main": "server.js",
 	"type": "module",
 	"scripts": {
 		"start": "node back-end/server",
@@ -11,7 +14,7 @@
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node back-end/seeder",
 		"data:destroy": "node back-end/seeder -d",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front-end && npm run build --prefix front-end"
 	},
 	"repository": {
 		"type": "git",
