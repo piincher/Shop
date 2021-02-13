@@ -5,7 +5,14 @@ const Footer = () => {
 		<footer>
 			<Container>
 				<Row>
-					<Col className="text-center py-3">Developpé &copy; By Ibrahim</Col>
+					<Col className="text-center py-3">
+						Developpé &copy; By{' '}
+						<span style={{ color: '#213900' }}>
+							<a href="https://ibrahimkouma.netlify.app/" target="_blank" rel="noreferrer">
+								Ibrahim
+							</a>
+						</span>
+					</Col>
 				</Row>
 			</Container>
 		</footer>
