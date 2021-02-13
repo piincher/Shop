@@ -4,7 +4,7 @@
 	"engines": {
 		"node": "14.15.3"
 	},
-	"description": "plate-forme e-commerce avec mern stack",
+	"description": "plate-forme e-commerce",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
