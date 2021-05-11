@@ -24,6 +24,7 @@ const CartScreen = ({ match, history, location }) => {
 	);
 	const removeFromCartHandler = (id) => {
 		dispatch(removeFromCart(id));
+		console.log('id', id);
 	};
 	const checkoutHandler = () => {
 		history.push('/login?redirect=shipping');
