@@ -20,8 +20,6 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(helmet());
-app.use(compression());
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
 }
