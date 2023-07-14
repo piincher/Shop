@@ -11,10 +11,10 @@ const Footer = () => {
 			<Container>
 				<Row>
 					<Col className="text-center py-3">
-						Developpé &copy; By{' '}
+						Developpé &copy; Par {' '}
 						<span style={{ color: '#213900' }}>
-							<a href="https://ibrahimkouma.netlify.app/" target="_blank" rel="noreferrer">
-								Ibrahim
+							<a href="https://nuvotech.tech" target="_blank" rel="noreferrer">
+								NuvoTech
 							</a>
 							{userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
 						</span>
